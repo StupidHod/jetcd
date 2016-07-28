@@ -20,8 +20,8 @@ It can manage the leases by send keep alive request for leases.
 ## keepAliveExecutor function
 1. This function is called periodically by `keepAliveSchedule`
 2. The lease may expire as:
--   The etcd respond overtime.
--   The client faile to send request in time.
+   * The etcd respond overtime.
+   * The client faile to send request in time.
 3. It will scan the keepAlives map and find the leases that requires keepAlive requests to send based on its nextKeepAliveTime.
 4. Send request to the StreamObserver for these leases
 
@@ -37,5 +37,5 @@ It can manage the leases by send keep alive request for leases.
 
 ## processKeepAliveRespond function
 1. It will get the lease instance based on the leaseID.
-2. if repond ttl < 0, it remove the lease from keepAlives map and call `onLeaseExpired`
+2. if repond ttl < 0, it remove respond lease from keepAlives map and call `onLeaseExpired`
 3. else it reset the lease's nextKeepAliveTime and deadLine value
