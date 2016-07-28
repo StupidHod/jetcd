@@ -4,11 +4,11 @@ It can manage the leases by send keep alive request for leases.
 
 ##grant function
 1. The function build leaseGrantRequest with ttl value
-2. It call respond gRPC interface to build a new lease in etcd.
+2. It call respond gRPC interface with leaseGrantRequest to build a new lease in etcd.
 
 ##revoke function
 1. The function build leaseRevokeRequest with lease id
-2. It call respond gRPC interface to revoke respond lease.
+2. It call respond gRPC interface with leaseRevokeRequest to revoke respond lease.
 
 ## startKeepAliveService function
 1. The function will start a backgroud scheduler `keepAliveSchedule` to send keep alive request for lease registered to EtcdLease Client.
@@ -23,11 +23,11 @@ It can manage the leases by send keep alive request for leases.
 1. This function set EtcdLeaseHandler for etcd lease client
 2. The EtcdLeaseHandler interface:
      * onKeepAliveRespond
-     It will be called when lease client receive response from etcd
+         - It will be called when lease client receive response from etcd
      * onLeaseExpired
-     It will be called when any lease expire and removed from etcd.
+         - It will be called when any lease expire and removed from etcd.
      * onError
-     It will be called when some exception occurred.
+         - It will be called when some exception occurred.
 
 ## keepAlive function
 1. It will create a Lease Object, and keep the lease alive.
