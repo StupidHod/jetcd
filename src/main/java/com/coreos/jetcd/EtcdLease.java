@@ -3,8 +3,6 @@ package com.coreos.jetcd;
 import com.coreos.jetcd.api.LeaseGrantResponse;
 import com.coreos.jetcd.api.LeaseKeepAliveResponse;
 import com.coreos.jetcd.api.LeaseRevokeResponse;
-import com.coreos.jetcd.lease.LeaseKeepAliveServiceAlreadyStartException;
-import com.coreos.jetcd.lease.LeaseKeepAliveServiceNotStartException;
 import com.google.common.util.concurrent.ListenableFuture;
 
 /**
@@ -49,12 +47,12 @@ public interface EtcdLease {
      * Init the request stream to etcd
      * start schedule to keep heartbeat to keep alive and remove dead leases
      */
-    void startKeepAliveService() throws LeaseKeepAliveServiceAlreadyStartException;
+    void startKeepAliveService() throws IllegalStateException;
 
     /**
      * end the schedule for keep alive and remove dead leases
      */
-    void closeKeepAliveService() throws LeaseKeepAliveServiceNotStartException;
+    void closeKeepAliveService() throws IllegalStateException;
 
     /**
      * This interface is called by Etcd Lease client to notify user about lease expiration and exception
